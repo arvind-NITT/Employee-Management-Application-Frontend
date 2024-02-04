@@ -1,10 +1,37 @@
 .crud{
-    height: 100vh;
+    height: 75vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+input{
+    width: 140px;
+    height: 26px;
+
+}
+select{
+    width: 150px;
+    height: 30px;
+}
+.addemployee{
+    height: 25vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
 }
 
+.searchbar{
+        display: flex;
+        position: inherit;
+        background-color: bisque;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+}
 table td{
     width: 150px;
     height: 30px;
@@ -26,9 +53,11 @@ table td button {
     cursor: pointer;
 }
 .button {
-    padding: 5px 10px;
-    border-radius: 5%;
-    cursor: pointer;
+    width:100px;
+    height: 30px;
+    border: 1px solid green;
+    background-color: rgb(7,168,7);
+    color: white;
 }
 table td button.edit {
     border: 1px solid green;

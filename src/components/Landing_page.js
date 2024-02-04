@@ -140,7 +140,10 @@ export default function Landing_page() {
         ind=2;
        }else if(search=='Name'){
         ind=0;
-       }else{
+       }else if(search=='Salary'){
+        ind=4;
+       }
+       else{
         ind=5;
        }
        const newdata = Employee.map((item,index)=>{
@@ -158,11 +161,12 @@ export default function Landing_page() {
   return (
     <>
       <div style={{ display: "flex", maxWidth: "100%", flexWrap: "wrap" }}>
-        <div>
+        
           <div className="searchbar">
          <h2 style={{display:'inline'}}>Search</h2>      <select onChange={handlesearchchange} name="search" id=""> 
                <option value="Name" >By Name</option>
                <option value="Age">By Age</option>
+               <option value="Salary">By Salary</option>
                <option value="Department">By Department</option>
              </select>
              {search && <div> 
@@ -183,7 +187,61 @@ export default function Landing_page() {
              })}
              </table>
           </div>
+        <div className="addemployee">
+          <h3>Add New Employee : </h3>
+      <form action="" method="post" class="card" />
+      Name{" "}
+      <input
+        type="text"
+        name="name"
+        id=""
+        value={newEmployee.name}
+        onChange={onchangehandle}
+      />
+      Age:{" "}
+      <input
+        type="number"
+        name="age"
+        id=""
+        value={newEmployee.age}
+        onChange={onchangehandle}
+      />
+      DOB{" "}
+      <input
+        type="date"
+        name="dob"
+        id=""
+        value={newEmployee.dob}
+        onChange={onchangehandle}
+      />
+      Salary{" "}
+      <input
+        type="number"
+        name="salary"
+        id=""
+        value={newEmployee.salary}
+        onChange={onchangehandle}
+      />
+      department{" "}
+      <input
+        type="text"
+        name="department"
+        id=""
+        value={newEmployee.department}
+        onChange={onchangehandle}
+      />
+      <button className="button"
+        onClick={() => {
+          return onclickAdd();
+        }}
+      >
+        {" "}
+        Submit{" "}
+      </button>
+      </div>
+          <div className="crud">
           <h1> Employees details </h1>
+          <br/>
           <form onSubmit={handlesubmit} action="">
             <table>
               <tr>
@@ -233,56 +291,7 @@ export default function Landing_page() {
         </div>
       </div>
       <br />
-      <h3>Add New Employee</h3>
-      <form action="" method="post" class="card" />
-      Name{" "}
-      <input
-        type="text"
-        name="name"
-        id=""
-        value={newEmployee.name}
-        onChange={onchangehandle}
-      />
-      Age:{" "}
-      <input
-        type="number"
-        name="age"
-        id=""
-        value={newEmployee.age}
-        onChange={onchangehandle}
-      />
-      DOB{" "}
-      <input
-        type="date"
-        name="dob"
-        id=""
-        value={newEmployee.dob}
-        onChange={onchangehandle}
-      />
-      Salary{" "}
-      <input
-        type="number"
-        name="salary"
-        id=""
-        value={newEmployee.salary}
-        onChange={onchangehandle}
-      />
-      department{" "}
-      <input
-        type="text"
-        name="department"
-        id=""
-        value={newEmployee.department}
-        onChange={onchangehandle}
-      />
-      <button
-        onClick={() => {
-          return onclickAdd();
-        }}
-      >
-        {" "}
-        Submit{" "}
-      </button>
+    
     </>
   );
 }
