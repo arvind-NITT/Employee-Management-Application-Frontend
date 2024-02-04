@@ -39,7 +39,7 @@ export default function Project_states(props) {
     //  var bd= {index,data};
     try {
         console.log("IS called")
-      const response = await fetch(`${path_to_backend}/updateemployee`, {
+      const response = await fetch(`${path_to_backend}updateemployee`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function Project_states(props) {
     //  var bd= {index,data};
     try {
         console.log("IS called")
-      const response = await fetch(`${path_to_backend}/deleteemployee/${index}`, {
+      const response = await fetch(`${path_to_backend}deleteemployee/${index}`, {
         method: "Delete",
         headers: { 
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function Project_states(props) {
     //  var bd= {index,data};
     try {
         console.log(data)
-      const response = await fetch(`${path_to_backend}/addemployee`, {
+      const response = await fetch(`${path_to_backend}addemployee`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
