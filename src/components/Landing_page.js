@@ -18,10 +18,10 @@ export default function Landing_page() {
   const [search, setsearch] = useState(null);
   const [searcharr, setsearchdata] = useState(null);
   const searchref= useRef();
-  const onclickhandle = (ele, index) => {
-    console.log(ele);
-    UpdateData(ele, index);
-  };
+  // const onclickhandle = (ele, index) => {
+  //   console.log(ele);
+  //   UpdateData(ele, index);
+  // };
   const onclickDelete = (index) => {
     console.log("On Click Delete");
     DeleteData(index);
@@ -124,6 +124,8 @@ export default function Landing_page() {
     // setEmployees(newList);
 
     // console.log(newList);
+    console.log("yha")
+    if(updatestate!=-1)
     UpdateData(updateddata, updatestate);
     setUpdatestate(-1);
   }
@@ -278,7 +280,7 @@ export default function Landing_page() {
                         </button>
                         <button
                           className="delete"
-                          onClick={() => onclickDelete(index)}
+                          onClick={() =>{ return onclickDelete(index)}}
                         >
                           Delete
                         </button>

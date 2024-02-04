@@ -20,11 +20,11 @@ export default function Project_states(props) {
         const data = await response.json();
         dt=data.message;
         console.log(data.message);
-       setTimeout(()=>{
+      //  setTimeout(()=>{
 
            setEmployees(data.message);
 
-       },1000)
+      //  },1000)
        
       } else {
         // showAlert("Failed to fetch data from the backend", "error");
@@ -53,11 +53,11 @@ export default function Project_states(props) {
         const data = await response.json();
         dt=data.message;
         console.log(data.message);
-       setTimeout(()=>{
+      //  setTimeout(()=>{
 // 
            setEmployees(data.message);
-       },1000)
-       fetchDataFromBackend();
+      //  },1000)
+      //  fetchDataFromBackend();
       } else {
         // showAlert("Failed to fetch data from the backend", "error");
         console.error("Error fetching data:");
@@ -69,6 +69,7 @@ export default function Project_states(props) {
   };
   const DeleteData = async (index) => {
     //  var bd= {index,data};
+    console.log(index);
     try {
         console.log("IS called")
       const response = await fetch(`${path_to_backend}deleteemployee/${index}`, {
@@ -77,7 +78,6 @@ export default function Project_states(props) {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-        // body:JSON.stringify( {index} ),
       });
 
       console.log(response);
@@ -85,11 +85,11 @@ export default function Project_states(props) {
         const data = await response.json();
         dt=data.message;
         console.log(data.message);
-       setTimeout(()=>{
+      //  setTimeout(()=>{
 
            setEmployees(data.message);
-       },1000)
-       fetchDataFromBackend();
+      //  },1000)
+      //  fetchDataFromBackend();
       } else {
         // showAlert("Failed to fetch data from the backend", "error");
         console.error("Error fetching data:");
@@ -117,11 +117,11 @@ export default function Project_states(props) {
         const data = await response.json();
         dt=data.message;
         console.log(data.message);
-       setTimeout(()=>{
+      //  setTimeout(()=>{
 
            setEmployees(data.message);
-       },1000)
-       fetchDataFromBackend();
+      //  },1000)
+      //  fetchDataFromBackend();
       } else {
         console.error("Error fetching data:");
       }
