@@ -29,8 +29,10 @@ select{
         position: inherit;
         background-color: bisque;
         width: 100%;
+        min-height: 100px;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
 }
 table td{
     width: 150px;
@@ -51,6 +53,8 @@ table td button {
     padding: 5px 10px;
     border-radius: 5%;
     cursor: pointer;
+    margin: 2px;
+    border-radius: 5px;
 }
 .button {
     width:100px;
@@ -58,6 +62,8 @@ table td button {
     border: 1px solid green;
     background-color: rgb(7,168,7);
     color: white;
+    margin: 2px;
+    border-radius: 5px;
 }
 table td button.edit {
     border: 1px solid green;

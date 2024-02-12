@@ -14,7 +14,7 @@ export default function Landing_page() {
   } = context;
   const [newEmployee, setNewEmployee] = useState({});
   const [updatestate, setUpdatestate] = useState(-1);
-  const [updateddata, setupdateddata] = useState({});
+  const [updateddata, setupdateddata] = useState(null);
   const [search, setsearch] = useState(null);
   const [searcharr, setsearchdata] = useState(null);
   const searchref= useRef();
@@ -34,29 +34,40 @@ export default function Landing_page() {
     InsertData(newEmployee);
   };
   function handleEdit(name) {
+    console.log(Employee[name]);
+    setupdateddata(Employee[name]);
     setUpdatestate(name);
   }
-  function handleInput(e) {
-    // e.preventDefault()
-    console.log(e.target.value);
-    setupdateddata({ ...updateddata, [e.target.name]: e.target.value });
-    console.log(updateddata);
+ 
 
-    // let name= updateddata.name.split(' ');
-    // console.log(name);
-  }
+  function EditList() {
 
-  function EditList({ item, ind, Employee, setEmployees }) {
-    return (
-      <tr>
+    function handleInput(e) {
+      // e.preventDefault()
+      console.log(e.target.value);
+      setupdateddata({ ...updateddata, [e.target.name]: e.target.value });
+      console.log(updateddata);
+    }
+    return ( updateddata && <tr>
         <td>
           {" "}
-          Name{" "}
+          First Name{" "}
           <input
             type="text"
-            name="name"
+            name="firstname"
             id=""
-            value={updateddata.name}
+            value={updateddata.firstname}
+            onChange={handleInput}
+          />
+        </td>
+        <td>
+          {" "}
+          Last Name{" "}
+          <input
+            type="text"
+            name="lastname"
+            id=""
+            value={updateddata.lastname}
             onChange={handleInput}
           />
         </td>
@@ -111,19 +122,12 @@ export default function Landing_page() {
           </button>
         </td>
       </tr>
+
     );
   }
   function handlesubmit(e) {
     e.preventDefault();
     setupdateddata({ ...updateddata, [e.target.name]: e.target.value });
-    // let name= updateddata.name.split(' ');
-    // console.log(name);
-    // const newList = Employee.map((item1,index)=>{
-    //   return index == updatestate ? {...item1,[0]:name[0],[1]:name[1],[2]:updateddata.age,[3]:updateddata.dob,[4]:updateddata.salary,[5]:updateddata.department} :item1
-    // })
-    // setEmployees(newList);
-
-    // console.log(newList);
     console.log("yha")
     if(updatestate!=-1)
     UpdateData(updateddata, updatestate);
@@ -134,25 +138,43 @@ export default function Landing_page() {
         setsearch(e.target.value);
   }
   function searchdata(){
-      //  var val = document.getElementById('searchinput').value();
+     
       var val = searchref.current.value;
        console.log(val);
        var ind;
        if(search=='Age'){
         ind=2;
+        const newdata = Employee.map((item,index)=>{
+          return item[ind]==val ? item :null
+         })
+         console.log(newdata);
+       setsearchdata(newdata);
        }else if(search=='Name'){
         ind=0;
+        val = val.split(' ');
+        const newdata = Employee.map((item,index)=>{
+          return item[ind]==val[0] && item[ind+1]==val[1] ? item :null
+         })
+         console.log(newdata);
+       setsearchdata(newdata);
        }else if(search=='Salary'){
         ind=4;
+        const newdata = Employee.map((item,index)=>{
+          return item[ind]==val ? item :null
+         })
+         console.log(newdata);
+       setsearchdata(newdata);
        }
        else{
         ind=5;
-       }
-       const newdata = Employee.map((item,index)=>{
-        return item[ind]==val ? item :null
-       })
-       console.log(newdata);
+        const newdata = Employee.map((item,index)=>{
+          return item[ind]==val ? item :null
+         })
+         console.log(newdata);
        setsearchdata(newdata);
+       }
+      
+       
   }
 
   useEffect(() => {
@@ -165,7 +187,9 @@ export default function Landing_page() {
       <div style={{ display: "flex", maxWidth: "100%", flexWrap: "wrap" }}>
         
           <div className="searchbar">
-         <h2 style={{display:'inline'}}>Search</h2>      <select onChange={handlesearchchange} name="search" id=""> 
+            <div>
+         <h3 style={{display:'inline'}}>Search</h3>  
+             <select onChange={handlesearchchange} name="search" id="Searchbarr"> 
                <option value="Name" >By Name</option>
                <option value="Age">By Age</option>
                <option value="Salary">By Salary</option>
@@ -175,6 +199,8 @@ export default function Landing_page() {
               <input type="text" id="searchinput" ref={searchref} /> 
               <button type="button" className="button" onClick={()=>searchdata()}>Search</button>
              </div>  }
+             </div>
+             <div>
              <table>
              {searcharr && searcharr.map((item,index)=>{
                return  item!=null && <tr>
@@ -183,21 +209,28 @@ export default function Landing_page() {
                <td>{item[3]}</td>
                <td>{item[4]}</td>
                <td>{item[5]}</td>
-               {/* <td>{index}</td> */}
-             
              </tr>
              })}
              </table>
+             </div>
           </div>
         <div className="addemployee">
           <h3>Add New Employee : </h3>
       <form action="" method="post" class="card" />
-      Name{" "}
+     First Name: {" "}
       <input
         type="text"
-        name="name"
+        name="firstname"
         id=""
-        value={newEmployee.name}
+        value={newEmployee.firstname}
+        onChange={onchangehandle}
+      />
+     Last Name:{" "}
+      <input
+        type="text"
+        name="lastname"
+        id=""
+        value={newEmployee.lastname}
         onChange={onchangehandle}
       />
       Age:{" "}
@@ -224,7 +257,7 @@ export default function Landing_page() {
         value={newEmployee.salary}
         onChange={onchangehandle}
       />
-      department{" "}
+      Department{" "}
       <input
         type="text"
         name="department"
@@ -257,12 +290,7 @@ export default function Landing_page() {
               {Employee &&
                 Employee.map((item, index) => {
                   return updatestate === index ? (
-                    <EditList
-                      item={item}
-                      index={index}
-                      Employee={Employee}
-                      setEmployees={setEmployees}
-                    />
+                    <EditList/>
                   ) : (
                     <tr>
                       <td>{item[0] + " " + item[1]}</td>
